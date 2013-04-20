@@ -33,14 +33,14 @@ class LDAPGet:
             return r
         except ldap.INVALID_CREDENTIALS:
             print "Your username or password is incorrect."
-            sys.exit()
+            sys.exit(1)
         except ldap.LDAPError, e:
             print e.message['info']
             if type(e.message) == dict and e.message.has_key('desc'):
                 print e.message['desc']
             else:
                 print e
-            sys.exit()
+            sys.exit(1)
 
 
 print "## LDAP search for sAMAccountName=%s against %s/%s" %(user, LDAPURI,LDAPBASE)
